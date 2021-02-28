@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Deploy to curretn environment') {
             steps {
-                sh 'docker-compose up'
+                sh 'docker-compose up -d'
             }
         }
     }
