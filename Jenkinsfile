@@ -9,9 +9,16 @@ pipeline {
     stages {
         stage ('Angular image build') {
             steps {
-                sh 'docker build --tag my-angular:latest --file ./angular-app/Dockerfile ./angular-app/'
+                sh 'docker build --tag ${DOCKER_LOGIN}/my-angular:latest --file ./angular-app/Dockerfile ./angular-app/'
                 sh 'docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASS}'
-                sh 'docker push my-angular:latest'
+                sh 'docker push ${DOCKER_LOGIN}/my-angular:latest'
+            }
+        }
+        stage ('Express image build') {
+            steps {
+                sh 'docker build --tag ${DOCKER_LOGIN}/my-express:latest --file ./express-server/Dockerfile ./express-server/'
+                sh 'docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASS}'
+                sh 'docker push ${DOCKER_LOGIN}/my-express:latest'
             }
         }
     }
