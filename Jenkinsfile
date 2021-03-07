@@ -41,7 +41,7 @@ pipeline {
                 sh "docker tag ${env.DOCKER_USER}/gmc-angular-front:build-${env.BUILD_NUMBER} ${env.DOCKER_USER}/gmc-angular-front:latest"
             }
         }
-        tage ('Preparing base image for back end') {
+        stage ('Preparing base image for back end') {
             steps {
                 sh( returnStdout: false, script: """#!/bin/sh
                     res=\$(wget -O - --user ${env.DOCKER_USER} --password ${env.DOCKER_TOKEN} ${env.REPO_API_URL}/${env.DOCKER_OWNER}/gmc-express-back-base/tags | grep ${env.BACK_IMG_TAG} )
