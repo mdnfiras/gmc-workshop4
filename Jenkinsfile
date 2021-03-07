@@ -22,7 +22,7 @@ pipeline {
                     if [ -z "\$res" ]; then
                         echo "Did not find image with tag ${env.FRONT_IMG_TAG}"
                         docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_TOKEN}
-                        docker build -f angular-app/base.Dockerfile -t ${env.DOCKER_OWNER}/gmc-angular-front-base:${env.FRONT_IMG_TAG} .
+                        docker build -f angular-app/base.Dockerfile -t ${env.DOCKER_OWNER}/gmc-angular-front-base:${env.FRONT_IMG_TAG} angular-app/
                         docker push ${env.DOCKER_OWNER}/gmc-angular-front-base:${env.FRONT_IMG_TAG}
                     else
                         echo "Found image with tag ${env.FRONT_IMG_TAG}"
@@ -48,7 +48,7 @@ pipeline {
                     if [ -z "\$res" ]; then
                         echo "Did not find image with tag ${env.BACK_IMG_TAG}"
                         docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_TOKEN}
-                        docker build -f express-server/base.Dockerfile -t ${env.DOCKER_OWNER}/gmc-express-back-base:${env.BACK_IMG_TAG} .
+                        docker build -f express-server/base.Dockerfile -t ${env.DOCKER_OWNER}/gmc-express-back-base:${env.BACK_IMG_TAG} express-server/
                         docker push ${env.DOCKER_OWNER}/gmc-express-back-base:${env.BACK_IMG_TAG}
                     else
                         echo "Found image with tag ${env.BACK_IMG_TAG}"
