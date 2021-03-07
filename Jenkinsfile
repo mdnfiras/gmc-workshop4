@@ -36,10 +36,10 @@ pipeline {
                 sh "docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_TOKEN}"
                 sh "docker pull ${env.DOCKER_OWNER}/gmc-angular-front-base:${env.FRONT_IMG_TAG}"
                 sh "docker tag ${env.DOCKER_OWNER}/gmc-angular-front-base:${env.FRONT_IMG_TAG} gmc-angular-front-base:latest"
-                sh "docker build --tag ${env.DOCKER_USER}/gmc-angular-front:build-${env.BUILD_NUMBER} --file ./angular-app/Dockerfile ./angular-app/"
-                sh "docker push ${env.DOCKER_USER}/gmc-angular-front:build-${env.BUILD_NUMBER}"
-                sh "docker tag ${env.DOCKER_USER}/gmc-angular-front:build-${env.BUILD_NUMBER} ${env.DOCKER_USER}/gmc-angular-front:latest"
-                sh "docker push ${env.DOCKER_USER}/gmc-angular-front:latest"
+                sh "docker build --tag ${env.DOCKER_OWNER}/gmc-angular-front:build-${env.BUILD_NUMBER} --file ./angular-app/Dockerfile ./angular-app/"
+                sh "docker push ${env.DOCKER_OWNER}/gmc-angular-front:build-${env.BUILD_NUMBER}"
+                sh "docker tag ${env.DOCKER_OWNER}/gmc-angular-front:build-${env.BUILD_NUMBER} ${env.DOCKER_OWNER}/gmc-angular-front:latest"
+                sh "docker push ${env.DOCKER_OWNER}/gmc-angular-front:latest"
             }
         }
         stage ('Preparing base image for back end') {
@@ -63,10 +63,10 @@ pipeline {
                 sh "docker login -u ${env.DOCKER_USER} -p ${env.DOCKER_TOKEN}"
                 sh "docker pull ${env.DOCKER_OWNER}/gmc-express-back-base:${env.BACK_IMG_TAG}"
                 sh "docker tag ${env.DOCKER_OWNER}/gmc-express-back-base:${env.BACK_IMG_TAG} gmc-express-back-base:latest"
-                sh "docker build --tag ${env.DOCKER_USER}/gmc-express-back:build-${env.BUILD_NUMBER} --file ./express-server/Dockerfile ./express-server/"
-                sh "docker push ${env.DOCKER_USER}/gmc-express-back:build-${env.BUILD_NUMBER}"
-                sh "docker tag ${env.DOCKER_USER}/gmc-express-back:build-${env.BUILD_NUMBER} ${env.DOCKER_USER}/gmc-express-back:latest"
-                sh "docker push ${env.DOCKER_USER}/gmc-express-back:latest"
+                sh "docker build --tag ${env.DOCKER_OWNER}/gmc-express-back:build-${env.BUILD_NUMBER} --file ./express-server/Dockerfile ./express-server/"
+                sh "docker push ${env.DOCKER_OWNER}/gmc-express-back:build-${env.BUILD_NUMBER}"
+                sh "docker tag ${env.DOCKER_OWNER}/gmc-express-back:build-${env.BUILD_NUMBER} ${env.DOCKER_OWNER}/gmc-express-back:latest"
+                sh "docker push ${env.DOCKER_OWNER}/gmc-express-back:latest"
             }
         }
         stage ('Trigger deployment'){
