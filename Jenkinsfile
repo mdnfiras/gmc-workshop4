@@ -11,7 +11,7 @@ pipeline {
         BACK_IMG_TAG = sh( returnStdout:true,
                     script: 'sha256sum express-server/package.json | cut -c1-15'
                   ).trim()
-        REPO_API_URL = 'https://registry.hub.docker.com/v2/repositories/'
+        REPO_API_URL = 'https://registry.hub.docker.com/v2/repositories'
     }
     
     stages {
